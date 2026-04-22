@@ -18,5 +18,6 @@ jobs:
       run: npm install -g apidog-cli
 
     - name: Running Test Scenario
-      env: APIDOG_ACCESS_TOKEN: ${{ vars.APIDOG_ACCESS_TOKEN }}
+      env:                        
+        APIDOG_ACCESS_TOKEN: ${{ vars.APIDOG_ACCESS_TOKEN }}
       run: apidog run --access-token $APIDOG_ACCESS_TOKEN -t 1773547 -e 5984070 -n 1 -r html,cli
