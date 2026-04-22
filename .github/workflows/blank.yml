@@ -7,21 +7,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
 
     - name: Setup Node.js environment
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v2
       with:
-        node-version: '20'
+        node-version: '14'
 
     - name: Install Apidog CLI
       run: npm install -g apidog-cli
 
-    - name: Run Apidog Tests
-      env:
-        APIDOG_ACCESS_TOKEN: ${{ vars.APIDOG_ACCESS_TOKEN }}
-      run: |
-        apidog run \
-          --access-token "$APIDOG_ACCESS_TOKEN" \
-          -t 1773459 -e 5984070 \
-          -n 1 -r html,cli
+    - name: Running Test Scenario
+      env: APIDOG_ACCESS_TOKEN: ${{ vars.APIDOG_ACCESS_TOKEN }}
+      run: apidog run --access-token $APIDOG_ACCESS_TOKEN -t 1773547 -e 5984070 -n 1 -r html,cli
